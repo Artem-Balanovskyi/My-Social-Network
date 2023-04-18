@@ -8,22 +8,9 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import dialogs from "./Components/Dialogs/Dialogs";
+import {IProps} from "./index";
 
-interface DialogParams {
-    name: string
-    id: number
-}
-
-interface MessageParams {
-    message: string
-    id: number
-}
-
-const App = (props: {
-    dialogData: ({ id: number, name: string })[],
-    messageData: ({ id: number, message: string })[]
-}) => {
+const App = ({dialogData, messageData, postsData}: IProps) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -31,8 +18,8 @@ const App = (props: {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' Component={Profile}/>
-                        <Route path='/dialogs/*' element=<Dialogs props={props.dialogData}/> />
+                        <Route path='/profile' element={<Profile postsData={postsData}/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs dialogData={dialogData} messageData={messageData}/>}/>
                         <Route path='/news' Component={News}/>
                         <Route path='/music' Component={Music}/>
                         <Route path='/settings' Component={Settings}/>
@@ -40,7 +27,6 @@ const App = (props: {
                 </div>
             </div>
         </BrowserRouter>)
-        ;
 }
 
 export default App;
