@@ -2,12 +2,12 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({postsData}: {
-	postsData: { id: number, message: string, likesCount: number }[]
-}) => {
+interface PostsProps {
+	posts: { id: number, message: string, likesCount: number }[]
+}
+const MyPosts = ({posts}: PostsProps) => {
 
-	console.log(`postsData: ${JSON.stringify(postsData)}`)
-let postElements = postsData.map((post) => {
+let postElements = posts.map((post) => {
 	return <Post id={post.id} message={post.message} likesCount={post.likesCount} key={post.id}/>
 })
 	
@@ -29,5 +29,4 @@ let postElements = postsData.map((post) => {
 	)
 	
 }
-
 export default MyPosts;

@@ -8,9 +8,9 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {IProps} from "./index";
+import { IState } from "./redux/state";
 
-const App = ({dialogData, messageData, postsData}: IProps) => {
+const App = ({dialogsPage, profilePage}: IState) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -18,8 +18,8 @@ const App = ({dialogData, messageData, postsData}: IProps) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile postsData={postsData}/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs dialogData={dialogData} messageData={messageData}/>}/>
+                        <Route path='/profile' element={<Profile {...profilePage}/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs {...dialogsPage}/>}/>
                         <Route path='/news' Component={News}/>
                         <Route path='/music' Component={Music}/>
                         <Route path='/settings' Component={Settings}/>
@@ -28,5 +28,4 @@ const App = ({dialogData, messageData, postsData}: IProps) => {
             </div>
         </BrowserRouter>)
 }
-
 export default App;
