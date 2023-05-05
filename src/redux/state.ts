@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export interface IState {
     dialogsPage: {
         dialogs: { id: number, name: string }[],
@@ -36,3 +38,21 @@ export const state: IState = {
         ]
     }
 }
+
+// window.state = state;
+//
+// export let addPost = () => {
+//     let newPost = {
+//         id: 5,
+//         message: state.profilePage.newPostText,
+//         likesCount: 0
+//     };
+//     state.profilePage.posts.push(newPost);
+//     state.profilePage.newPostText = '';
+//     rerenderEntireTree(state);
+// }
+//
+// export let updateNewPostText = (newText) => {
+//     state.profilePage.newPostText = newText;
+//     rerenderEntireTree(state);
+// }
