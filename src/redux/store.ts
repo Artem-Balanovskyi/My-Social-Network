@@ -1,6 +1,9 @@
 import {IStore} from "./interfaces/store.interface";
 import {dispatchAction} from "./interfaces/dispatchAction.interface";
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export const store: IStore = {
     _state: {
         dialogsPageState: {
@@ -45,7 +48,7 @@ export const store: IStore = {
     },
 
     dispatch: (action: dispatchAction) => {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             if (store._state.profilePageState.newPostText) {
 
                 let newPost: { id: number, message: string, likesCount: number } = {
@@ -57,13 +60,21 @@ export const store: IStore = {
                 store._state.profilePageState.newPostText = '';
                 store._callSubscriber(store._state);
             }
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            if (action.newPostText) {
-                store._state.profilePageState.newPostText = action.newPostText;
-                store._callSubscriber(store._state);
+        } else {
+            if (action.type === UPDATE_NEW_POST_TEXT) {
+                if (action.newPostText) {
+                    store._state.profilePageState.newPostText = action.newPostText;
+                    store._callSubscriber(store._state);
+                }
             }
         }
     }
 }
+
+
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const updateNewPostTextActionCreator = (text: string) =>
+    ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
+
 
 

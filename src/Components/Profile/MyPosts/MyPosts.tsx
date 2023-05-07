@@ -3,6 +3,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {IPost, IProfilePageState} from "../../../redux/interfaces/profilePageState.interface";
 import {dispatchAction} from "../../../redux/interfaces/dispatchAction.interface";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/store";
 
 
 interface MyPostsProps {
@@ -21,14 +22,14 @@ const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
     let onPostChange = () => {
         if (newPostElement.current) {
             let newPostText: string = newPostElement.current.value;
-            let action: dispatchAction = {type: 'UPDATE-NEW-POST-TEXT', newPostText};
-            dispatch(action);
+            // let action: dispatchAction = {type: 'UPDATE-NEW-POST-TEXT', newPostText};
+            dispatch(updateNewPostTextActionCreator(newPostText));
         }
     }
 
     let addPost = () => {
-        let action: dispatchAction = {type: 'ADD-POST'}
-        dispatch(action)
+        // let action: dispatchAction = {type: 'ADD-POST'}
+        dispatch(addPostActionCreator())
     }
 
     return (
