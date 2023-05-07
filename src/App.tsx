@@ -4,21 +4,28 @@ import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
 import Dialogs from "./Components/Dialogs/Dialogs";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {IState} from "./redux/state";
+import {IProfilePageState} from "./redux/interfaces/profilePageState.interface";
+import {IDialogsPageState} from "./redux/interfaces/dialogsPageState.interface";
 
-const App = ({dialogsPage, profilePage}: IState) => {
+interface AppProps {
+    profilePageState:IProfilePageState,
+    dialogsPageState: IDialogsPageState,
+    dispatch: Function
+}
+
+const App = ({profilePageState, dialogsPageState, dispatch }: AppProps) => {
     return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile {...profilePage}/>}/>
-                    <Route path='/dialogs/*' element={<Dialogs {...dialogsPage}/>}/>
+                    <Route path='/profile' element={<Profile state={profilePageState} dispatch={dispatch}/>}/>
+                    <Route path='/dialogs/*' element={<Dialogs {...dialogsPageState} dispatch={dispatch}/>}/>
                     <Route path='/news' Component={News}/>
                     <Route path='/music' Component={Music}/>
                     <Route path='/settings' Component={Settings}/>

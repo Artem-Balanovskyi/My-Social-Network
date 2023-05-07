@@ -2,17 +2,20 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {Dialog} from "./Dialog/Dialog";
+import {IDialog, IMessage} from "../../redux/interfaces/dialogsPageState.interface";
 
-const Dialogs = ({dialogs, messages}: {
-    dialogs: ({ id: number, name: string })[],
-    messages: ({ id: number, message: string })[]
-}) => {
+interface MyDialogsProps {
+    dialogs: IDialog[],
+    messages: IMessage[],
+    dispatch: Function
+}
+const Dialogs = ({dialogs, messages, dispatch}: MyDialogsProps) => {
 
-    let dialogElements = dialogs.map((dialog: { id: number, name: string }) => {
+    let dialogElements = dialogs.map((dialog: IDialog) => {
         return <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>
     })
 
-    let messageElements = messages.map((message: { id: number, message: string }) => {
+    let messageElements = messages.map((message: IMessage) => {
         return <Message message={message.message} id={message.id} key={message.id}/>
     })
 

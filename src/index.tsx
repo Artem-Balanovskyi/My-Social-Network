@@ -1,6 +1,23 @@
 import React from 'react';
+import {BrowserRouter} from "react-router-dom";
+import ReactDOM from 'react-dom/client';
+import App from './App';
 import './index.css';
-import {rerenderEntireTree} from "./render";
-import {state} from "./redux/state";
+import {store} from "./redux/store";
+import {IState} from "./redux/interfaces/state.interface";
 
-rerenderEntireTree(state)
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+export let rerenderEntireTree: Function = (state: IState) => {
+    console.log(`Rerender!`)
+    root.render(
+        <BrowserRouter>
+            <App {...state} dispatch={store.dispatch.bind(store)}/>
+        </BrowserRouter>
+    );
+}
+
+
+
+rerenderEntireTree(store.getState())
+
+store.subscribe(rerenderEntireTree)
