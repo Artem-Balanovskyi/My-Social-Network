@@ -1,4 +1,4 @@
-export interface dispatchAction {
+export interface IDispatchAction {
     type: string,
     newPostText?: string
     newMessageText?: string

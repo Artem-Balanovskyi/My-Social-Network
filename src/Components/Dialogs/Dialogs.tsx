@@ -3,13 +3,8 @@ import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {Dialog} from "./Dialog/Dialog";
 import {IDialog, IMessage} from "../../redux/interfaces/dialogsPageState.interface";
-import {dispatchAction} from "../../redux/interfaces/dispatchAction.interface";
-import {
-    addMessageActionCreator,
-    addPostActionCreator,
-    updateNewMessageTextActionCreator,
-    updateNewPostTextActionCreator
-} from "../../redux/store";
+import {IDispatchAction} from "../../redux/interfaces/dispatchAction.interface";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/reducers/dialogs.reducer";
 
 interface MyDialogsProps {
     dialogs: IDialog[],
@@ -30,12 +25,12 @@ const Dialogs = ({dialogs, messages, newMessageText, dispatch}: MyDialogsProps) 
 
     let onMessageChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         let newMessageText = event.target.value
-        let action: dispatchAction = updateNewMessageTextActionCreator(newMessageText);
+        let action: IDispatchAction = updateNewMessageTextActionCreator(newMessageText);
         dispatch(action);
     }
 
     let addMessage = () => {
-        let action: dispatchAction = addMessageActionCreator()
+        let action: IDispatchAction = addMessageActionCreator()
         dispatch(action)
     }
 

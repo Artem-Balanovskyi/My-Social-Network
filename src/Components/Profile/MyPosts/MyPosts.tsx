@@ -1,9 +1,9 @@
-import React, {MouseEventHandler} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {IPost, IProfilePageState} from "../../../redux/interfaces/profilePageState.interface";
-import {dispatchAction} from "../../../redux/interfaces/dispatchAction.interface";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/store";
+import {IPost} from "../../../redux/interfaces/profilePageState.interface";
+import {IDispatchAction} from "../../../redux/interfaces/dispatchAction.interface";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/reducers/profile.reducer";
 
 
 interface MyPostsProps {
@@ -11,6 +11,7 @@ interface MyPostsProps {
     newPostText: string,
     dispatch: Function
 }
+
 const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
 
     let postElements = posts.map((post) => {
@@ -22,13 +23,13 @@ const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
     let onPostChange = () => {
         if (newPostElement.current) {
             let newPostText: string = newPostElement.current.value;
-            let action: dispatchAction = updateNewPostTextActionCreator(newPostText);
+            let action: IDispatchAction = updateNewPostTextActionCreator(newPostText);
             dispatch(action);
         }
     }
 
     let addPost = () => {
-        let action: dispatchAction = addPostActionCreator()
+        let action: IDispatchAction = addPostActionCreator()
         dispatch(action)
     }
 
