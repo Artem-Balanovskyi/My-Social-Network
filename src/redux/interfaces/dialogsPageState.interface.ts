@@ -1,6 +1,7 @@
 export interface IDialogsPageState {
     dialogs: IDialog[],
     messages: IMessage[],
+    newMessageText: string
 }
 
 export interface IDialog {

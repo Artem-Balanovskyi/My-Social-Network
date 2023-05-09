@@ -22,14 +22,14 @@ const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
     let onPostChange = () => {
         if (newPostElement.current) {
             let newPostText: string = newPostElement.current.value;
-            // let action: dispatchAction = {type: 'UPDATE-NEW-POST-TEXT', newPostText};
-            dispatch(updateNewPostTextActionCreator(newPostText));
+            let action: dispatchAction = updateNewPostTextActionCreator(newPostText);
+            dispatch(action);
         }
     }
 
     let addPost = () => {
-        // let action: dispatchAction = {type: 'ADD-POST'}
-        dispatch(addPostActionCreator())
+        let action: dispatchAction = addPostActionCreator()
+        dispatch(action)
     }
 
     return (
