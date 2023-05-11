@@ -32,7 +32,6 @@ export const store: IStore = {
                 {id: 5, message: 'Hey!', likesCount: 13}
             ],
             newPostText: '',
-
         }
     },
 
