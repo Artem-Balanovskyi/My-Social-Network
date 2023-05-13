@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {Dialog} from "./Dialog/Dialog";
@@ -9,11 +9,12 @@ import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../
 interface MyDialogsProps {
     dialogs: IDialog[],
     messages: IMessage[],
-    newMessageText: string
-    dispatch: Function
+    newMessageText: string,
+    updateNewMessageText: Function,
+    AddMessage: MouseEventHandler<HTMLButtonElement>
 }
 
-const Dialogs = ({dialogs, messages, newMessageText, dispatch}: MyDialogsProps) => {
+const Dialogs = ({dialogs, messages, newMessageText, updateNewMessageText, AddMessage}: MyDialogsProps) => {
 
     let dialogElements = dialogs.map((dialog: IDialog) => {
         return <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>
@@ -25,13 +26,7 @@ const Dialogs = ({dialogs, messages, newMessageText, dispatch}: MyDialogsProps) 
 
     let onMessageChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         let newMessageText = event.target.value
-        let action: IDispatchAction = updateNewMessageTextActionCreator(newMessageText);
-        dispatch(action);
-    }
-
-    let addMessage = () => {
-        let action: IDispatchAction = addMessageActionCreator()
-        dispatch(action)
+        updateNewMessageText(newMessageText)
     }
 
     return (
@@ -50,7 +45,7 @@ const Dialogs = ({dialogs, messages, newMessageText, dispatch}: MyDialogsProps) 
                         onChange={onMessageChange}
                     ></textarea></div>
                     <div>
-                        <button onClick={addMessage}>Send</button>
+                        <button onClick={AddMessage}>Send</button>
                     </div>
                 </div>
             </div>

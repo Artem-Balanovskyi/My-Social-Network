@@ -1,18 +1,16 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {IPost} from "../../../redux/interfaces/profilePageState.interface";
-import {IDispatchAction} from "../../../redux/interfaces/dispatchAction.interface";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/reducers/profile.reducer";
-
 
 interface MyPostsProps {
     posts: IPost[],
     newPostText: string,
-    dispatch: Function
+    updateNewPostText: Function,
+    AddPost: MouseEventHandler<HTMLButtonElement>
 }
 
-const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
+const MyPosts = ({posts, newPostText, updateNewPostText, AddPost}: MyPostsProps) => {
 
     let postElements = posts.map((post) => {
         return <Post id={post.id} message={post.message} likesCount={post.likesCount} key={post.id}/>
@@ -23,15 +21,10 @@ const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
     let onPostChange = () => {
         if (newPostElement.current) {
             let newPostText: string = newPostElement.current.value;
-            let action: IDispatchAction = updateNewPostTextActionCreator(newPostText);
-            dispatch(action);
+            updateNewPostText(newPostText)
         }
     }
 
-    let addPost = () => {
-        let action: IDispatchAction = addPostActionCreator()
-        dispatch(action)
-    }
 
     return (
         <div className={s.postsBlock}>
@@ -41,7 +34,7 @@ const MyPosts = ({posts, newPostText, dispatch}: MyPostsProps) => {
                     <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={AddPost}>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>

@@ -10,6 +10,7 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import {IProfilePageState} from "./redux/interfaces/profilePageState.interface";
 import {IDialogsPageState} from "./redux/interfaces/dialogsPageState.interface";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 interface AppProps {
     profilePageState:IProfilePageState,
@@ -25,7 +26,7 @@ const App = ({profilePageState, dialogsPageState, dispatch }: AppProps) => {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='/profile' element={<Profile state={profilePageState} dispatch={dispatch}/>}/>
-                    <Route path='/dialogs/*' element={<Dialogs {...dialogsPageState} dispatch={dispatch}/>}/>
+                    <Route path='/dialogs/*' element={<DialogsContainer state={dialogsPageState} dispatch={dispatch}/>}/>
                     <Route path='/news' Component={News}/>
                     <Route path='/music' Component={Music}/>
                     <Route path='/settings' Component={Settings}/>
