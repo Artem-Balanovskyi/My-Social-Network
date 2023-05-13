@@ -5,15 +5,11 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {IProfilePageState} from "../../redux/interfaces/profilePageState.interface";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-interface ProfileProps {
-    state: IProfilePageState,
-    dispatch: Function
-}
-const Profile = ({state, dispatch}: ProfileProps) => {
+const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer state={state} dispatch={dispatch}/>
+            <MyPostsContainer/>
         </div>
     )
 }

@@ -1,31 +1,32 @@
 import React from 'react';
-import s from './Dialogs.module.css'
-import {Message} from "./Message/Message";
-import {Dialog} from "./Dialog/Dialog";
-import {IDialog, IDialogsPageState, IMessage} from "../../redux/interfaces/dialogsPageState.interface";
 import {IDispatchAction} from "../../redux/interfaces/dispatchAction.interface";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/reducers/dialogs.reducer";
 import Dialogs from "./Dialogs";
+import StoreContext from "../../storeContext";
 
-interface MyDialogsProps {
-    state: IDialogsPageState
-    dispatch: Function
-}
+const DialogsContainer = () => {
 
-const DialogsContainer = ({state, dispatch}: MyDialogsProps) => {
+    return <StoreContext.Consumer>
+        {store => {
 
-    let onAddMessage = () => {
-        let action: IDispatchAction = addMessageActionCreator()
-        dispatch(action)
-    }
-    let onMessageChange = (text: string) => {
-        let action: IDispatchAction = updateNewMessageTextActionCreator(text);
-        dispatch(action);
-    }
+            let onAddMessage = () => {
+                let action: IDispatchAction = addMessageActionCreator()
+                store.dispatch(action)
+            }
 
-    return (
-        <Dialogs {...state} updateNewMessageText={onMessageChange} AddMessage={onAddMessage}/>
-    )
+            let onMessageChange = (text: string) => {
+                let action: IDispatchAction = updateNewMessageTextActionCreator(text);
+                store.dispatch(action);
+            }
+
+            return (
+                <Dialogs {...store.getState().dialogsPageState} updateNewMessageText={onMessageChange}
+                         AddMessage={onAddMessage}/>
+            )
+
+        }
+        }
+    </StoreContext.Consumer>
 }
 
 export default DialogsContainer;

@@ -18,15 +18,15 @@ interface AppProps {
     dispatch: Function
 }
 
-const App = ({profilePageState, dialogsPageState, dispatch }: AppProps) => {
+const App = () => {
     return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={profilePageState} dispatch={dispatch}/>}/>
-                    <Route path='/dialogs/*' element={<DialogsContainer state={dialogsPageState} dispatch={dispatch}/>}/>
+                    <Route path='/profile' element={<Profile/>}/>
+                    <Route path='/dialogs/*' element={<DialogsContainer/>}/>
                     <Route path='/news' Component={News}/>
                     <Route path='/music' Component={Music}/>
                     <Route path='/settings' Component={Settings}/>

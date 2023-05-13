@@ -5,13 +5,16 @@ import App from './App';
 import './index.css';
 import store from "./redux/redux-store";
 import {IState} from "./redux/interfaces/state.interface";
+import {Provider} from "./storeContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 export let rerenderEntireTree: Function = (state: IState) => {
     console.log(`Rerender!`)
     root.render(
         <BrowserRouter>
-            <App {...state} dispatch={store.dispatch.bind(store)}/>
+            <Provider store={store}>
+                <App />
+            </Provider>
         </BrowserRouter>
     );
 }
