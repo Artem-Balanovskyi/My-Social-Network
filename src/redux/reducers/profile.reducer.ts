@@ -1,6 +1,5 @@
 import {IPost, IProfilePageState} from "../interfaces/profilePageState.interface"
 import {IDispatchAction} from "../interfaces/dispatchAction.interface"
-import {IDialogsPageState} from "../interfaces/dialogsPageState.interface";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'

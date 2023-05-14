@@ -9,21 +9,23 @@ const DialogsContainer = () => {
     return <StoreContext.Consumer>
         {store => {
 
-            let onAddMessage = () => {
-                let action: IDispatchAction = addMessageActionCreator()
-                store.dispatch(action)
+            if (store) {
+                let onAddMessage = () => {
+                    let action: IDispatchAction = addMessageActionCreator()
+                    store.dispatch(action)
+                }
+
+                let onMessageChange = (text: string) => {
+                    let action: IDispatchAction = updateNewMessageTextActionCreator(text);
+                    store.dispatch(action);
+                }
+
+                return (
+                    <Dialogs {...store.getState().dialogsPageState}
+                             updateNewMessageText={onMessageChange}
+                             AddMessage={onAddMessage}/>
+                )
             }
-
-            let onMessageChange = (text: string) => {
-                let action: IDispatchAction = updateNewMessageTextActionCreator(text);
-                store.dispatch(action);
-            }
-
-            return (
-                <Dialogs {...store.getState().dialogsPageState} updateNewMessageText={onMessageChange}
-                         AddMessage={onAddMessage}/>
-            )
-
         }
         }
     </StoreContext.Consumer>

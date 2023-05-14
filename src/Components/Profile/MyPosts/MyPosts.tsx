@@ -24,8 +24,7 @@ const MyPosts = ({posts, newPostText, updateNewPostText, AddPost}: MyPostsProps)
             updateNewPostText(newPostText)
         }
     }
-
-
+    
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
