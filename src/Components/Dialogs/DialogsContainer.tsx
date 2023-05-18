@@ -2,33 +2,31 @@ import React from 'react';
 import {IDispatchAction} from "../../redux/interfaces/dispatchAction.interface";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/reducers/dialogs.reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../storeContext";
+import {connect} from "react-redux";
+import {IState} from "../../redux/interfaces/state.interface";
 
-const DialogsContainer = () => {
+let mapStateToProps = (state: IState) => {
 
-    return <StoreContext.Consumer>
-        {store => {
-
-            if (store) {
-                let onAddMessage = () => {
-                    let action: IDispatchAction = addMessageActionCreator()
-                    store.dispatch(action)
-                }
-
-                let onMessageChange = (text: string) => {
-                    let action: IDispatchAction = updateNewMessageTextActionCreator(text);
-                    store.dispatch(action);
-                }
-
-                return (
-                    <Dialogs {...store.getState().dialogsPageState}
-                             updateNewMessageText={onMessageChange}
-                             AddMessage={onAddMessage}/>
-                )
-            }
-        }
-        }
-    </StoreContext.Consumer>
+    return {
+        dialogsPageState: state.dialogsPageState
+    }
 }
+
+let mapDispatchToProps = (dispatch: Function) => {
+
+    return {
+        updateNewMessageText: (text: string) => {
+            let action: IDispatchAction = updateNewMessageTextActionCreator(text);
+            dispatch(action);
+        },
+
+        addMessage: () => {
+            let action: IDispatchAction = addMessageActionCreator()
+            dispatch(action)
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;

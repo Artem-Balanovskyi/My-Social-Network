@@ -3,20 +3,11 @@ import './App.css';
 import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
-import Dialogs from "./Components/Dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {IProfilePageState} from "./redux/interfaces/profilePageState.interface";
-import {IDialogsPageState} from "./redux/interfaces/dialogsPageState.interface";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-
-interface AppProps {
-    profilePageState:IProfilePageState,
-    dialogsPageState: IDialogsPageState,
-    dispatch: Function
-}
 
 const App = () => {
     return (

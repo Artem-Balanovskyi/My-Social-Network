@@ -1,16 +1,17 @@
 import React, {MouseEventHandler} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {IPost} from "../../../redux/interfaces/profilePageState.interface";
+import {IProfilePageState} from "../../../redux/interfaces/profilePageState.interface";
 
 interface MyPostsProps {
-    posts: IPost[],
-    newPostText: string,
+    profilePageState: IProfilePageState
     updateNewPostText: Function,
-    AddPost: MouseEventHandler<HTMLButtonElement>
+    addPost: MouseEventHandler<HTMLButtonElement>
 }
 
-const MyPosts = ({posts, newPostText, updateNewPostText, AddPost}: MyPostsProps) => {
+const MyPosts = ({profilePageState, updateNewPostText, addPost}: MyPostsProps) => {
+
+    let {posts, newPostText} = profilePageState
 
     let postElements = posts.map((post) => {
         return <Post id={post.id} message={post.message} likesCount={post.likesCount} key={post.id}/>
@@ -24,7 +25,7 @@ const MyPosts = ({posts, newPostText, updateNewPostText, AddPost}: MyPostsProps)
             updateNewPostText(newPostText)
         }
     }
-    
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -33,7 +34,7 @@ const MyPosts = ({posts, newPostText, updateNewPostText, AddPost}: MyPostsProps)
                     <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
                 </div>
                 <div>
-                    <button onClick={AddPost}>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>

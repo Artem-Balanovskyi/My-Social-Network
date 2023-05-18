@@ -2,19 +2,17 @@ import React, {MouseEventHandler} from 'react';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {Dialog} from "./Dialog/Dialog";
-import {IDialog, IMessage} from "../../redux/interfaces/dialogsPageState.interface";
-import {IDispatchAction} from "../../redux/interfaces/dispatchAction.interface";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/reducers/dialogs.reducer";
+import {IDialog, IDialogsPageState, IMessage} from "../../redux/interfaces/dialogsPageState.interface";
 
 interface MyDialogsProps {
-    dialogs: IDialog[],
-    messages: IMessage[],
-    newMessageText: string,
+    dialogsPageState: IDialogsPageState
     updateNewMessageText: Function,
-    AddMessage: MouseEventHandler<HTMLButtonElement>
+    addMessage: MouseEventHandler<HTMLButtonElement>
 }
 
-const Dialogs = ({dialogs, messages, newMessageText, updateNewMessageText, AddMessage}: MyDialogsProps) => {
+const Dialogs = ({dialogsPageState, updateNewMessageText, addMessage}: MyDialogsProps) => {
+
+    let {dialogs, messages, newMessageText} = dialogsPageState
 
     let dialogElements = dialogs.map((dialog: IDialog) => {
         return <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>
@@ -45,7 +43,7 @@ const Dialogs = ({dialogs, messages, newMessageText, updateNewMessageText, AddMe
                         onChange={onMessageChange}
                     ></textarea></div>
                     <div>
-                        <button onClick={AddMessage}>Send</button>
+                        <button onClick={addMessage}>Send</button>
                     </div>
                 </div>
             </div>
