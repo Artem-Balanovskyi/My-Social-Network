@@ -11,7 +11,8 @@ const initialState: IProfilePageState = {
         {id: 3, message: 'Blabla', likesCount: 7},
         {id: 4, message: 'Dada', likesCount: 9},
         {id: 5, message: 'Hey!', likesCount: 14},
-        {id: 6, message: 'Hey you!', likesCount: 7}
+        {id: 6, message: 'Hey you!', likesCount: 7},
+        {id: 7, message: 'Hellow world!', likesCount: 11}
     ],
     newPostText: '',
 }
