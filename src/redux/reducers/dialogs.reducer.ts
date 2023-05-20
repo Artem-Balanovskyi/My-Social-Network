@@ -23,25 +23,28 @@ const initialState: IDialogsPageState = {
     newMessageText: ''
 }
 function dialogsReducer(state: IDialogsPageState = initialState, action: IDispatchAction) {
+    let stateCopy = {...state}
+
     switch (action.type) {
         case ADD_MESSAGE:
-            if (state.newMessageText) {
+            if (stateCopy.newMessageText) {
+                stateCopy.messages = [...state.messages]
 
                 let newMessage: IMessage = {
-                    id: state.messages.length + 1,
-                    message: state.newMessageText,
+                    id: stateCopy.messages.length + 1,
+                    message: stateCopy.newMessageText,
                 }
-                state.messages.push(newMessage)
-                state.newMessageText = ''
+                stateCopy.messages.push(newMessage)
+                stateCopy.newMessageText = ''
             }
-            return state
+            return stateCopy
         case UPDATE_NEW_MESSAGE_TEXT:
             if (action.newMessageText) {
-                state.newMessageText = action.newMessageText
+                stateCopy.newMessageText = action.newMessageText
             }
-            return state
+            return stateCopy
         default:
-            return state
+            return stateCopy
     }
 }
 
