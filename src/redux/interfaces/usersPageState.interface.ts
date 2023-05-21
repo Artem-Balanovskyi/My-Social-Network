@@ -1,15 +1,14 @@
-export interface IDialogsPageState {
-    dialogs: IDialog[],
-    messages: IMessage[],
-    newMessageText: string
+export interface IUsersPageState {
+    users: IUser[]
 }
-
-export interface IDialog {
+export interface IUser {
     id: number,
-    name: string
-}
-
-export interface IMessage {
-    id: number,
-    message: string
+    avatar_url: string,
+    followed: boolean,
+    fullName: string,
+    status: string,
+    location: {
+        country: string,
+        cityName: string
+    }
 }

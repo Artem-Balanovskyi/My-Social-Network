@@ -33,6 +33,37 @@ export const store: IStore = {
                 {id: 5, message: 'Hey!', likesCount: 13}
             ],
             newPostText: '',
+        },
+        usersPageState: {
+            users: [
+                {id: 1,
+                    avatar_url: "https://static.vecteezy.com/system/resources/thumbnails/002/275/847/small_2x/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg",
+                    followed: true,
+                    fullName: "John Doe",
+                    status: "Hello World!",
+                    location: {
+                        country: "Ukraine",
+                        cityName: "Kiev"
+                    }},
+                {id: 2,
+                    avatar_url: "https://www.cxservice360.com/wp-content/uploads/2017/09/Avatar.png",
+                    followed: false,
+                    fullName: "Jane Doe",
+                    status: "Hi, I'm Jane!",
+                    location: {
+                        country: "Italy",
+                        cityName: "Rome"
+                    }},
+                {id: 3,
+                    avatar_url: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+                    followed: false,
+                    fullName: "Hideo Kodzhima",
+                    status: "I am samurai!",
+                    location: {
+                        country: "Japan",
+                        cityName: "Tokyo"
+                    }},
+            ]
         }
     },
 
@@ -49,8 +80,8 @@ export const store: IStore = {
     },
 
     dispatch: (action: IDispatchAction) => {
-        store._state.profilePageState = profileReducer(store._state.profilePageState, action)
-        store._state.dialogsPageState = dialogsReducer(store._state.dialogsPageState, action)
+        // store._state.profilePageState = profileReducer(store._state.profilePageState, action)
+        // store._state.dialogsPageState = dialogsReducer(store._state.dialogsPageState, action)
 
         store._callSubscriber(store._state)
     }

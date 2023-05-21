@@ -1,0 +1,15 @@
+.users {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.user {
+    padding: 10px;
+    color: white;
+}
+
+.userItems .active {
+    color: gold;
+}
+
+
