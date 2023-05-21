@@ -1,15 +1,57 @@
-.users {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-}
-
 .user {
     padding: 10px;
     color: white;
 }
 
-.userItems .active {
-    color: gold;
+.user_block {
+    width: 75%;
+display: grid;
+    grid-template-columns: 2fr 10fr;
 }
 
+.avatar_block {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar_block_img {
+    width: 100px;
+    height: auto;
+}
+
+.avatar_block_button {
+    align-items: center;
+}
+
+.details_block {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.details_block_left {
+text-align: left;
+}
+
+.details_block_fullName {
+
+}
+
+.details_block_status {
+
+}
+
+.details_block_right {
+text-align: right;
+}
+
+.details_block_country {
+
+}
+
+.details_block_cityName {
+
+}
 
