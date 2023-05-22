@@ -16,21 +16,16 @@ const Users = ({usersPageState, followUser, unfollowUser, setUsers}: MyUsersProp
     let {users} = usersPageState
 
     let usersElements = users.map((user: IUser) => {
-        return <User {...user} key={user.id}/>
+        return <User user={user}
+                     followUser={followUser}
+                     unfollowUser={unfollowUser}
+                     setUsers={setUsers}
+                     key={user.id}/>
     })
 
-
-
-    // let onMessageChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     let newMessageText = event.target.value
-    //     updateNewMessageText(newMessageText)
-    // }
-
     return (
-        <div className={s.users}>
-            <div className={s.userItems}>
-                {usersElements}
-            </div>
+        <div>
+            {usersElements}
         </div>
     )
 }

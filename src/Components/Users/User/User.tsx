@@ -1,17 +1,25 @@
 import s from "../Users.module.css";
 import React from "react";
-import {IUser} from "../../../redux/interfaces/usersPageState.interface";
+import {IUser, IUsersPageState} from "../../../redux/interfaces/usersPageState.interface";
 
-export const User = (user: IUser) => {
+interface MyUserProps {
+    user: IUser,
+    followUser: Function,
+    unfollowUser: Function,
+    setUsers: Function
+}
+
+export const User = ({user, followUser, unfollowUser, setUsers}: MyUserProps) => {
     return (
         <div className={s.user_block}>
             <div className={s.avatar_block}>
                 <div>
                     <img className={s.avatar_block_img} src={user.avatar_url} alt="avatar_url"/>
                 </div>
-                <button className={s.avatar_block_button}>
-                    {user.followed ? 'Unfollow' : 'Follow'}
-                </button>
+                {user.followed
+                    ? <button className={s.avatar_block_button} onClick={() => unfollowUser(user.id)}>Unfollow</button>
+                    : <button className={s.avatar_block_button} onClick={() => followUser(user.id)}>Follow</button>
+                }
             </div>
             <div className={s.details_block}>
                 <div className={s.details_block_left}>
@@ -24,7 +32,7 @@ export const User = (user: IUser) => {
                 </div>
                 <div className={s.details_block_right}>
                     <div className={s.details_block_country}>
-                        {user.location.country}
+                        {user.location.country + ','}
                     </div>
                     <div className={s.details_block_cityName}>
                         {user.location.cityName}

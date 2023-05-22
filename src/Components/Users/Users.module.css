@@ -5,8 +5,9 @@
 
 .user_block {
     width: 75%;
-display: grid;
+    display: grid;
     grid-template-columns: 2fr 10fr;
+    padding: 10px;
 }
 
 .avatar_block {
@@ -14,6 +15,9 @@ display: grid;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    border: 1px black solid;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
 .avatar_block_img {
@@ -26,32 +30,36 @@ display: grid;
 }
 
 .details_block {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+    position: relative;
+    border: solid 1px black;
+    border-radius: 5px;
 }
 
 .details_block_left {
-text-align: left;
+    text-align: left;
 }
 
 .details_block_fullName {
-
+padding: 20px;
 }
 
 .details_block_status {
-
+    position: absolute;
+    padding: 20px;
+bottom: 0;
 }
 
 .details_block_right {
-text-align: right;
+    text-align: right;
 }
 
 .details_block_country {
-
+    padding: 20px 20px 5px;
 }
 
 .details_block_cityName {
-
+    padding: 0 20px 20px;
 }
 
