@@ -1,7 +1,7 @@
 import React from 'react';
 import {IDispatchAction} from "../../redux/interfaces/dispatchAction.interface";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/reducers/dialogs.reducer";
-import Users from "./Users";
+import Users from "./Users(Class)";
 import {connect} from "react-redux";
 import {IState} from "../../redux/interfaces/state.interface";
 import {followActionCreator, setUsersActionCreator, unfollowActionCreator} from "../../redux/reducers/users.reducer";

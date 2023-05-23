@@ -32,10 +32,12 @@ export const User = ({user, followUser, unfollowUser, setUsers}: MyUserProps) =>
                 </div>
                 <div className={s.details_block_right}>
                     <div className={s.details_block_country}>
-                        {user.location.country + ','}
+                        "user.location.country"
+                        {/*{user.location.country + ','}*/}
                     </div>
                     <div className={s.details_block_cityName}>
-                        {user.location.cityName}
+                        {/*{user.location.cityName}*/}
+                        "user.location.cityName"
                     </div>
                 </div>
             </div>

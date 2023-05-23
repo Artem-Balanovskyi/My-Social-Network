@@ -30,4 +30,4 @@ const Users = ({usersPageState, followUser, unfollowUser, setUsers}: MyUsersProp
     )
 }
 
-export default Users;
+export default Users
