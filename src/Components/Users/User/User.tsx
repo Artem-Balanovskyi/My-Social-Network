@@ -24,7 +24,7 @@ export const User = ({user, followUser, unfollowUser, setUsers}: MyUserProps) =>
             <div className={s.details_block}>
                 <div className={s.details_block_left}>
                     <div className={s.details_block_fullName}>
-                        {user.fullName}
+                        {user.fullName ? user.fullName : user.name}
                     </div>
                     <div className={s.details_block_status}>
                         {user.status}
@@ -32,12 +32,10 @@ export const User = ({user, followUser, unfollowUser, setUsers}: MyUserProps) =>
                 </div>
                 <div className={s.details_block_right}>
                     <div className={s.details_block_country}>
-                        "user.location.country"
-                        {/*{user.location.country + ','}*/}
+                        {user.location ? user.location.country + ',' : "Country is unknown"}
                     </div>
                     <div className={s.details_block_cityName}>
-                        {/*{user.location.cityName}*/}
-                        "user.location.cityName"
+                        {user.location ? user.location.cityName + ',' : "City is unknown"}
                     </div>
                 </div>
             </div>

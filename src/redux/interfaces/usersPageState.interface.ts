@@ -5,7 +5,8 @@ export interface IUser {
     id: number,
     avatar_url: string,
     followed: boolean,
-    fullName: string,
+    fullName?: string,
+    name?: string,
     status: string,
     location: {
         country: string,
